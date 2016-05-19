@@ -1,0 +1,15 @@
+#!/usr/local/bin/ruby
+# coding: utf-8
+
+# csvファイルを保存するディレクトリ
+CsvFolder = "../html"
+
+# データの取得間隔
+def SleepTime()
+    1
+end
+
+# csvファイルの出力先pathを返す
+def CsvPath(filename)
+    File.join(CsvFolder, filename)
+end

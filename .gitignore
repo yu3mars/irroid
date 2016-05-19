@@ -1,3 +1,8 @@
+## Custom:
+*.csv
+config.rb
+
+## Basic for Ruby:
 *.gem
 *.rbc
 /.config
