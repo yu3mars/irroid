@@ -2,7 +2,7 @@
 # coding: utf-8
 
 require 'jpstock'
-require './config'
+require_relative './config'
 
 filename = "performance.csv"
 
