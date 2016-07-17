@@ -13,3 +13,11 @@ end
 def CsvPath(filename)
     File.join(CsvFolder, filename)
 end
+
+def PricelogFilename()
+    CsvPath("pricelog.csv")
+end
+
+def PerformanceFilename()
+    CsvPath("performance.csv")
+end

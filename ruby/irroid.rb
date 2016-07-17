@@ -4,9 +4,8 @@
 require 'jpstock'
 require_relative './config'
 def MakePricelogCsv()
-  pricelogFilename = "pricelog.csv"
 
-  csvdatas = CSV.read(CsvPath(pricelogFilename), "r:utf-8")
+  csvdatas = CSV.read(PricelogFilename(), "r:utf-8")
   for csvdata in csvdatas
     #20分より前のデータを消去
     while csvdata.length > 7 do
@@ -24,7 +23,7 @@ def MakePricelogCsv()
   end
 
   # ファイルへ書き込み
-  CSV.open(CsvPath(pricelogFilename), "w") do |csv|
+  CSV.open(PricelogFilename(), "w") do |csv|
     for csvdata in csvdatas
       csv << csvdata
     end
@@ -33,10 +32,8 @@ end
 
 
 def MakePerformanceCsv()
-  pricelogFilename = "pricelog.csv"
-  performanceFilename = "performance.csv"
 
-  csvdatas = CSV.read(CsvPath(pricelogFilename), "r:utf-8")
+  csvdatas = CSV.read(PricelogFilename(), "r:utf-8")
   for csvdata in csvdatas
     #現在のデータを取得
     if csvdata[0] == "コード"
@@ -54,7 +51,7 @@ def MakePerformanceCsv()
   end
 
   # ファイルへ書き込み
-  CSV.open(CsvPath(performanceFilename), "w") do |csv|
+  CSV.open(PerformanceFilename(), "w") do |csv|
     for csvdata in csvdatas
       csv << csvdata
     end
