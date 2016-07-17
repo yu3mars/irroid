@@ -7,13 +7,32 @@
     <script src="http://jsgt.org/lib/jquery/plugin/csv2table/v002/js/jquery.csv2table-0.02-b-4.7.js" type="text/javascript" charset="utf-8"></script>
   </header>
   <body>
-    <div id="view0"></div>
-    <div id="view1"></div>
+    <div id="view_pricepercent"></div>
+    <div id="view_performance"></div>
 
     <script>
     $(function(){
-      $('#view0').csv2table('pricepercent.csv');
-      $('#view1').csv2table('performance.csv');
+      $('#view_pricepercent').csv2table('pricepercent.csv',{
+        onload: function() {
+          chkComp();
+        }
+      });
+      $('#view_performance').csv2table('performance.csv');
+
+      function chkComp() {
+        jQuery('table', '#view_pricepercent')
+          .find('td:_csv2table_myComp(<=-0.5)').css('background', '#0ff').end()
+          .find('td:_csv2table_myComp(<=-1)').css('background', '#0df').end()
+          .find('td:_csv2table_myComp(<=-2)').css('background', '#0af').end()        
+          .find('td:_csv2table_myComp(<=-4)').css('background', '#08f').end()
+
+          .find('td:_csv2table_myComp(>=0.5)').css('background', '#ff0').end()
+          .find('td:_csv2table_myComp(>=1)').css('background', '#fa0').end()
+          .find('td:_csv2table_myComp(>=2)').css('background', '#f80').end()
+          .find('td:_csv2table_myComp(>=4)').css('background', '#f40').end()
+
+          .find('td:_csv2table_myComp(>999)').css('background', '#fff').end()
+        };
     });
     </script>
 
