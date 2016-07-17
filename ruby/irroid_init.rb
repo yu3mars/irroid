@@ -7,7 +7,7 @@ require_relative './config'
 #取得する会社の証券コード
 codes = ["2379","2503","2931","3326","3401","3660","3668","3680","3853","3904","4348","4751","5201","5715","6090","6506","6753","6879","7438","7571","7823","8154","8697","9432","9619"]
 
-filename = "performance.csv"
+  pricelogFilename = "pricelog.csv"
 
 # 会社名を処理
 def CompanyName(comname)
@@ -20,7 +20,7 @@ def CompanyName(comname)
 end
 
 # ファイルへ書き込み
-CSV.open(CsvPath(filename), "w") do |csv|
+CSV.open(CsvPath(pricelogFilename), "w") do |csv|
   csv << ["コード", "銘柄", "前日終値"]
   
   #前日終値を取得
