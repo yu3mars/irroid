@@ -21,3 +21,7 @@ end
 def PerformanceFilename()
     CsvPath("performance.csv")
 end
+
+def PricePercentFilename()
+    CsvPath("pricepercent.csv")
+end
