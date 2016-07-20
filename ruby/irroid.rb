@@ -57,15 +57,20 @@ end
 def MakePricePercentCsv()
   csvdatas = CSV.read(PricelogFilename(), "r:utf-8")
   for csvdata in csvdatas
+    #現在時刻の前日比を保持
+    if csvdata[0] != "コード"
+      zenjitsuhi_now = ((csvdata[3].to_f / csvdata[2].to_f - 1.0) * 100.0).round(2).to_s + "%"
+    end
     #20分経過後は前日終値を除去
     if csvdata.length > 7
       csvdata.slice!(2)
     end
     #現時刻比の%表示を計算。タグはそのまま
     if csvdata[0] != "コード"
-      (2..csvdata.length-1).to_a.reverse.each do |i|
+      for i in 3..csvdata.length-1
         csvdata[i] = ((csvdata[i].to_f / csvdata[2].to_f - 1.0) * 100.0).round(2).to_s
       end
+      csvdata[2]=zenjitsuhi_now
     end
   end
 
